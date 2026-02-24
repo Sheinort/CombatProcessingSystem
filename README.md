@@ -1,6 +1,9 @@
 # Combat Entity System
 Base layer for combat entity lifecycles, stats, and resources. Implements a data pipeline via request structs and iterating systems, optimized for ~400 combined requests per frame.
 
+## Scope
+This package defines the standard RPG combat pipeline: entity lifecycle management, stat resolution, resource mutation, and request processing. It is intended as a foundation - domain-specific mechanics and ui implimentation are built on top rather than embedded here.
+
 ## Architecture
 The pipeline processes combat requests linearly through Burst-compiled static classes that operate directly on arrays of entity data. This approach was chosen over job-based parallelism because at the ~400 req/frame target typical of RPG combat, Unity Job System overhead is measurable and consistent enough to negate throughput gains. Jobs and parallelism become the better trade-off at approximately 1,000+ requests per frame, where the scheduling cost amortizes. For the request volumes common to RPG combat, static Burst-compiled iteration is faster in practice.
 
@@ -16,10 +19,7 @@ Support for passive effects (specialized shields, damage reduction, triggers) an
 
 Interceptors work the same way as pipeline systems - they iterate over requests and modify values or cause needed side effects. This approach maintains Burst compatibility and allows straightforward implementation of combat interception effects. Addition/Removal of entities to/from the Interceptor is done via addition to per Interceptor List.
 
-## Scope
-This package defines the standard RPG combat pipeline: entity lifecycle management, stat resolution, resource mutation, and request processing. It is intended as a foundation - domain-specific mechanics and ui implimentation are built on top rather than embedded here.
-
-Usage
+## Usage
 Most interaction is done through CombatCommands and direct array access. A basic example is provided in TestDamageScript.
 GameObjects must be authored with CombatEntityAuthoring or created manually through CombatCommands to be registered in the system. All communication between systems is done through EntityID, which is later mapped to an array index via IndexerSystem or directly through the GetIndex method.
 Interceptor definition can be referenced in ShieldAbsorb, which demonstrates the three-part structure: a ScriptableObject for editor authoring, a static system class containing the processor method, and an instantiated coordinator class.
