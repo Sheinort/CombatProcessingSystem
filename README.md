@@ -1,5 +1,5 @@
 # Combat Entity System
-Base layer for combat entity lifecycles, stats, and resources. Implements a data pipeline via request structs and iterating systems, optimized for ~400 combined requests per frame.
+Base layer for combat entity lifecycles, stats, and resources. Implements a data pipeline via request structs and iterating systems, optimized for RPG request volumes (up to 400/frame), with linear scaling into the thousands before full ECS or parallel job-based implementations become the better tradeoff.
 
 ## Scope
 This package defines the standard RPG combat pipeline: entity lifecycle management, stat resolution, resource mutation, and request processing. It is intended as a foundation - domain-specific mechanics and ui implimentation are built on top rather than embedded here.
