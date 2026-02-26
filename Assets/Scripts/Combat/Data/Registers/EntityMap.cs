@@ -150,6 +150,7 @@ namespace Combat
             if (_idToIndex.IsCreated) _idToIndex.Dispose();
             if (_indexToId.IsCreated) _indexToId.Dispose();
             if (_freeIds.IsCreated) _freeIds.Dispose();
+            if (_count.IsCreated) _count.Dispose();
         }
         
         public struct JobView

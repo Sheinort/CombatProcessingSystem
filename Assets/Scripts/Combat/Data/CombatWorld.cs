@@ -45,6 +45,7 @@ namespace Combat
             DeathRegistry.Dispose();
             EntityMap.Dispose();
             EntityTypeRegistry.Dispose();
+            ActionRegister.Dispose();
             if (PendingInits.IsCreated) PendingInits.Dispose();
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using Unity.Collections;
 
 namespace Combat
@@ -8,7 +9,7 @@ namespace Combat
     public interface IStatInterceptorBeforeApplication : IInterceptor { }
     public interface IStatInterceptorAfterApplication : IInterceptor { }
     
-    public interface IInterceptor
+    public interface IInterceptor: IDisposable
     {
         public void Initialize(int initialSize);
         public void Update(CombatWorld combatWorld);

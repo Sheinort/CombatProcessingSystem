@@ -72,7 +72,7 @@ namespace Combat
         public void Dispose()
         {
             foreach (var interceptor in _concreteToInstance) {
-                (interceptor.Value as IDisposable)?.Dispose();
+                interceptor.Value?.Dispose();
             }
         }
     }

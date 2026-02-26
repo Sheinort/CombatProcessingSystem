@@ -49,6 +49,11 @@ namespace Combat
 
             return result;
         }
+
+        public void Dispose()
+        {
+            map.Dispose();
+        }
     }
 
     [BurstCompile]
